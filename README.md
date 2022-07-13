@@ -11,29 +11,55 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages). 
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+TODO: Implementation of full test coverage.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+TODO: Post byte array and and encryption implementations
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Make sure u have the following dev dependencies in your pubspec.yml build_runner: ^2.1.11
+json_serializable: ^6.3.1 Also add json_annotation: ^4.6.0 in dependencies in your pubspec.yml
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+flutter create http_example TODO: Include short and useful examples for package users. Add longer
+examples to `/example` folder.
 
 ```dart
-const like = 'sample';
+import '../delegate_package.dart';
+
+part 'test_json.g.dart';
+
+@JsonSerializable()
+class TestJson extends FromJsonModel<TestJson> {
+  late String id;
+  late String name;
+
+  @override
+  TestJson create() => TestJson();
+
+  @override
+  TestJson fromJson(Map<String, dynamic> json) {
+    return _$TestJsonFromJson(json);
+  }
+
+  @override
+  Map<String, dynamic> toJson() => _$TestJsonToJson(this);
+}
+
+method() async {
+  final interceptor = HttpInterceptor(headers: {"token": "token"});
+  final doiClient = await DioClient().getInstance(baseUrl: "baseUrl", debugMode: true,);
+  final HttpReqDelegate delegate = HttpReqDelegateImpl(doiClient: dioClient);
+  /// perform your http request ///
+  final  results = await dataSourceImpl
+      .getForSingle<TestJson>("endPoint", TestJson(), {});
+}
+
 ```
 
 ## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+TODO: I will implement DI and BLOCK pattern in example project.
