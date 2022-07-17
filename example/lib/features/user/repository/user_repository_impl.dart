@@ -1,7 +1,10 @@
+import 'package:http_delegate/http/http_delegate_exception.dart';
+import 'package:http_delegate/http/http_delegate_general_exception.dart';
 import 'package:http_example/features/user/domain/user.dart';
 import 'package:http_example/features/user/remote_data/remote_user_service.dart';
 import 'package:http_example/features/user/repository/user_repository.dart';
 
+///Logic for specific data source to be performed here remote or local'
 class UserRepositoryImpl implements UserRepository {
   final RemoteUserService _userService;
 
@@ -12,12 +15,24 @@ class UserRepositoryImpl implements UserRepository {
 
   ///HttpDelegateGeneralException or HttpDelegateException maybe throw you would like to handle it on repository
   @override
-  Future<User> getUser() {
-    return _userService.getUser();
+  Future<User?> getUser() async {
+    try {
+      return _userService.getUser();
+    } on HttpDelegateGeneralException catch (e) {
+      return null;
+    } on HttpDelegateException catch (e) {
+      return null;
+    }
   }
 
   @override
-  Future<List<User>> getUsers() {
-    return _userService.getUsers();
+  Future<List<User>>? getUsers() {
+    try {
+      return _userService.getUsers();
+    } on HttpDelegateGeneralException catch (e) {
+      return null;
+    } on HttpDelegateException catch (e) {
+      return null;
+    }
   }
 }
