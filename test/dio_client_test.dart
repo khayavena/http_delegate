@@ -33,7 +33,7 @@ void main() {
     });
     test('Test  DIO with base url and interceptors Implementation ', () async {
       final interceptorsValue = Interceptors();
-      interceptorsValue.add(HttpInterceptor());
+      interceptorsValue.add(HttpDelegateInterceptor());
       when(dio.options).thenReturn(BaseOptions(baseUrl: "base"));
       when(dio.interceptors).thenReturn(interceptorsValue);
       when(mockClient.dio).thenReturn(dio);

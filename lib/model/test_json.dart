@@ -1,20 +1,11 @@
-import '../delegate_package.dart';
+import 'package:simple_json_mapper/simple_json_mapper.dart';
 
-part 'test_json.g.dart';
+import 'json_model.dart';
 
-@JsonSerializable()
-class TestJson extends FromJsonModel<TestJson> {
-  late String id;
-  late String name;
+@JsonObject()
+class TestJson extends JsonModel {
+  final String id;
+  final String name;
 
-  @override
-  TestJson create() => TestJson();
-
-  @override
-  TestJson fromJson(Map<String, dynamic> json) {
-    return _$TestJsonFromJson(json);
-  }
-
-  @override
-  Map<String, dynamic> toJson() => _$TestJsonToJson(this);
+  TestJson({required this.id, required this.name});
 }

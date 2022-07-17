@@ -1,9 +1,9 @@
 import '../delegate_package.dart';
 
-class HttpInterceptor extends Interceptor {
+class HttpDelegateInterceptor extends Interceptor {
   Map<String, dynamic>? headers;
 
-  HttpInterceptor({this.headers});
+  HttpDelegateInterceptor({this.headers});
 
   @override
   onRequest(

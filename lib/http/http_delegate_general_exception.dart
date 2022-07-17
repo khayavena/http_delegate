@@ -1,5 +1,5 @@
 class HttpDelegateGeneralException extends Error {
-  late final Error error;
+  final Error error;
 
   HttpDelegateGeneralException(this.error);
 }

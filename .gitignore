@@ -2,3 +2,6 @@
 /.idea/
 /build/
 /.dart_tool/
+
+/build/test_cache/
+/build/unit_test_assets/
