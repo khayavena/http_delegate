@@ -10,21 +10,22 @@ import '../features/user/repository/user_repository_impl.dart';
 
 final _locator = GetIt.instance;
 
-GetIt get locator => _locator;
+GetIt get moduleLocator => _locator;
 
-void initRemoteDataModules() {
+Future<void> initRemoteDataModules() async {
   json_mapper.init();
   final dioClient = DioClient().getInstance(
-      baseUrl: EnvConfig.base_url,
+      baseUrl: EnvConfig.baseUrl,
       interceptors: [
-        HttpDelegateInterceptor(headers: {'api-key': EnvConfig.api_key})
+        HttpDelegateInterceptor(headers: {'api-key': EnvConfig.apiKey})
       ],
       debugMode: true);
   _locator.registerLazySingleton<HttpReqDelegate>(
       () => HttpReqDelegateImpl(dioClient: dioClient));
+  _initServiceAndRepositoryModules();
 }
 
-void initServiceAndRepositoryModules() {
+void _initServiceAndRepositoryModules() {
   _locator.registerLazySingleton<RemoteUserService>(
       () => RemoteUserServiceImpl(reqDelegate: _locator<HttpReqDelegate>()));
   _locator.registerLazySingleton<UserRepository>(

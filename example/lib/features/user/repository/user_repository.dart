@@ -3,5 +3,5 @@ import '../domain/user.dart';
 abstract class UserRepository {
   Future<User?> getUser();
 
-  Future<List<User>>? getUsers();
+  Future<List<User>> getUsers();
 }

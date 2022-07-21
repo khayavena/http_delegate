@@ -26,13 +26,13 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<List<User>>? getUsers() {
+  Future<List<User>> getUsers() async {
     try {
       return _userService.getUsers();
     } on HttpDelegateGeneralException catch (e) {
-      return null;
+      return [];
     } on HttpDelegateException catch (e) {
-      return null;
+      return [];
     }
   }
 }
