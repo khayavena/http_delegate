@@ -1,9 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:http_example/features/user/bloc/get_users_event.dart';
-import 'package:http_example/features/user/bloc/get_users_state.dart';
-import 'package:http_example/features/user/bloc/result_status.dart';
+import 'package:http_example/features/post/bloc/get_posts_event.dart';
+import 'package:http_example/features/post/bloc/get_posts_state.dart';
+import 'package:http_example/features/post/bloc/result_status.dart';
 
-import '../repository/user_repository.dart';
+import '../repository/post_repository.dart';
 
 ///Preferable each bloc should focus on single functionality to avoid multiple states
 /// in different widgets being updated unnecessarily and also avoid conditional
@@ -24,7 +24,7 @@ class GetUsersBloc extends Bloc<GetUsersEvent, GetUsersState> {
   }
 
   Future<GetUsersState> _getUsersToState(GetUsersEvent event) async {
-    final results = await repository.getUsers();
+    final results = await repository.getPosts();
     if (results.isEmpty) {
       return _getUsersFailureToState();
     }

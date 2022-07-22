@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:http_example/features/user/page/users_page.dart';
+import 'package:http_example/features/post/page/posts_page.dart';
 
 class MainApp extends StatelessWidget {
   const MainApp({Key? key}) : super(key: key);

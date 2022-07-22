@@ -1,8 +1,9 @@
 import 'package:http_delegate/http/http_req_delegate.dart';
-import 'package:http_example/features/user/domain/user.dart';
-import 'package:http_example/features/user/remote_data/remote_user_service.dart';
+import 'package:http_example/features/post/remote_data/remote_post_service.dart';
 
-class RemoteUserServiceImpl implements RemoteUserService {
+import '../domain/post.dart';
+
+class RemoteUserServiceImpl implements RemotePostService {
   final HttpReqDelegate _reqDelegate;
 
   ///Ready to call endPoints no need to worry about -
@@ -12,12 +13,12 @@ class RemoteUserServiceImpl implements RemoteUserService {
 
   ///HttpDelegateGeneralException or HttpDelegateException maybe throw you would like to handle it on repository
   @override
-  Future<User> getUser() {
-    return _reqDelegate.get<User>('endPoint');
+  Future<Post> getPost() {
+    return _reqDelegate.get<Post>('/post');
   }
 
   @override
-  Future<List<User>> getUsers() {
-    return _reqDelegate.get<List<User>>('endPoint');
+  Future<List<Post>> getPosts() {
+    return _reqDelegate.get<List<Post>>('/posts');
   }
 }

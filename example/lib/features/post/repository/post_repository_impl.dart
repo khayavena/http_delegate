@@ -1,23 +1,24 @@
 import 'package:http_delegate/http/http_delegate_exception.dart';
 import 'package:http_delegate/http/http_delegate_general_exception.dart';
-import 'package:http_example/features/user/domain/user.dart';
-import 'package:http_example/features/user/remote_data/remote_user_service.dart';
-import 'package:http_example/features/user/repository/user_repository.dart';
+import 'package:http_example/features/post/repository/post_repository.dart';
+
+import '../domain/post.dart';
+import '../remote_data/remote_post_service.dart';
 
 ///Logic for specific data source to be performed here remote or local'
 class UserRepositoryImpl implements UserRepository {
-  final RemoteUserService _userService;
+  final RemotePostService _postService;
 
   ///Ready to call endPoints no need to worry about -
   /// Dio and Json(FromJson to json) lib at this moment  delegate does that for you
-  UserRepositoryImpl({required RemoteUserService userService})
-      : _userService = userService;
+  UserRepositoryImpl({required RemotePostService postService})
+      : _postService = postService;
 
   ///HttpDelegateGeneralException or HttpDelegateException maybe throw you would like to handle it on repository
   @override
-  Future<User?> getUser() async {
+  Future<Post?> getPost() async {
     try {
-      return _userService.getUser();
+      return _postService.getPost();
     } on HttpDelegateGeneralException catch (e) {
       return null;
     } on HttpDelegateException catch (e) {
@@ -26,9 +27,9 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<List<User>> getUsers() async {
+  Future<List<Post>> getPosts() async {
     try {
-      return _userService.getUsers();
+      return _postService.getPosts();
     } on HttpDelegateGeneralException catch (e) {
       return [];
     } on HttpDelegateException catch (e) {

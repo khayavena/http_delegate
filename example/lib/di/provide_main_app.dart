@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http_example/di/module_locator.dart';
 
 import '../features/main/main_app.dart';
-import '../features/user/bloc/get_users_bloc.dart';
-import '../features/user/repository/user_repository.dart';
+import '../features/post/bloc/get_posts_bloc.dart';
+import '../features/post/repository/post_repository.dart';
 
 Future<void> provideMainApp() async {
   WidgetsFlutterBinding.ensureInitialized();
