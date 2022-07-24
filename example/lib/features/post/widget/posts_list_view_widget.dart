@@ -15,7 +15,7 @@ class PostsListViewWidget extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
               leading: const Icon(Icons.list),
-              trailing: const Icon(Icons.album_outlined),
+              trailing: const Icon(Icons.arrow_forward_ios_sharp),
               title: Text(posts[index].title));
         });
   }
