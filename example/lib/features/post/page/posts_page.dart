@@ -1,9 +1,13 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/get_posts_bloc.dart';
 import '../bloc/get_posts_event.dart';
 import '../bloc/get_posts_state.dart';
+import '../bloc/result_status.dart';
+import '../constants/post_analytics_events.dart';
 import '../widget/post_body_widget.dart';
 
 class PostsPage extends StatefulWidget {
@@ -33,10 +37,21 @@ class _PostsPageState extends State<PostsPage> {
       body: Container(
         color: Colors.white,
         child: BlocConsumer<GetPostsBloc, GetPostsState>(
-            listener: (context, state) async {},
-            builder: (context, state) {
-              return PostBodyWidget(state: state);
-            }),
+            listener: (context, state) {
+          switch (state.status) {
+            case ResultStatus.init:
+              log(PostAnalyticsEvents.postsInitEvent);
+              break;
+            case ResultStatus.done:
+              log(PostAnalyticsEvents.postsDoneEvent);
+              break;
+            case ResultStatus.failed:
+              log(PostAnalyticsEvents.postsFailedEvent);
+              break;
+          }
+        }, builder: (context, state) {
+          return PostBodyWidget(state: state);
+        }),
       ),
     );
   }

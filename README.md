@@ -1,65 +1,55 @@
 <!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
+This README describes the package. 
+This package is meant to simplify internal api integration, you can clone and use even update the package
+to fit your business needs. There is also example app that shows how to use the package. 
 -->
-
-TODO: Implementation of full test coverage.
 
 ## Features
 
-TODO: Post byte array and and encryption implementations
+BLOC pattern Repository Dependency injection(Get It)
+Unit testing
 
 ## Getting started
 
-Make sure u have the following dev dependencies in your pubspec.yml build_runner: ^2.1.11
-json_serializable: ^6.3.1 Also add json_annotation: ^4.6.0 in dependencies in your pubspec.yml
+git clone https://github.com/khayavena/http_delegate.git
+cd htt_delegate, flutter pub get, flutter pub run build_runner build --delete-conflicting-outputs cd
+example cd flutter pub get flutter pub run build_runner build --delete-conflicting-outputs
 
 ## Usage
 
-flutter create http_example TODO: Include short and useful examples for package users. Add longer
-examples to `/example` folder.
-
 ```dart
-import '../delegate_package.dart';
+///Define models inside your inside http_delegate/lib/model
+@JsonObject()
+class Post extends JsonModel {
+  final int userId;
+  final int id;
+  final String title;
+  final String body;
 
-part 'test_json.g.dart';
-
-@JsonSerializable()
-class TestJson extends FromJsonModel<TestJson> {
-  late String id;
-  late String name;
-
-  @override
-  TestJson create() => TestJson();
-
-  @override
-  TestJson fromJson(Map<String, dynamic> json) {
-    return _$TestJsonFromJson(json);
-  }
-
-  @override
-  Map<String, dynamic> toJson() => _$TestJsonToJson(this);
+  Post({required this.userId,
+    required this.id,
+    required this.title,
+    required this.body});
 }
 
-method() async {
+
+functionality() async {
+  //Add interceptor
   final interceptor = HttpInterceptor(headers: {"token": "token"});
+  //init Dio http client
   final doiClient = await DioClient().getInstance(baseUrl: "baseUrl", debugMode: true,);
+  //init Init http delegate for your app.
   final HttpReqDelegate delegate = HttpReqDelegateImpl(doiClient: dioClient);
+
   /// perform your http request ///
-  final  results = await dataSourceImpl
-      .getForSingle<TestJson>("endPoint", TestJson(), {});
+  final results = await delegate
+      .get<Post>("endPoint");
+  final results = await delegate
+      .get<List<Post>>("endPoint");
 }
 
 ```
 
 ## Additional information
 
-TODO: I will implement DI and BLOCK pattern in example project.
+For more information and detailed understanding just go through example project
