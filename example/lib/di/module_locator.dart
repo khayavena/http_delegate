@@ -1,7 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:http_delegate/delegate_package.dart';
 import 'package:http_example/env/env_config.dart';
-import 'package:http_example/mapper.g.dart' as json_mapper;
 
 import '../features/post/remote_data/remote_post_service.dart';
 import '../features/post/remote_data/remote_post_service_impl.dart';
@@ -13,7 +12,7 @@ final _locator = GetIt.instance;
 GetIt get moduleLocator => _locator;
 
 Future<void> initRemoteDataModules() async {
-  json_mapper.init();
+  initJsonMapperObjects();
   final dioClient = DioClient().getInstance(
       baseUrl: EnvConfig.baseUrl,
       interceptors: [

@@ -1,8 +1,8 @@
 import 'package:http_delegate/http/http_delegate_exception.dart';
 import 'package:http_delegate/http/http_delegate_general_exception.dart';
+import 'package:http_delegate/model/post.dart';
 import 'package:http_example/features/post/repository/post_repository.dart';
 
-import '../domain/post.dart';
 import '../remote_data/remote_post_service.dart';
 
 ///Logic for specific data source to be performed here remote or local'
@@ -29,7 +29,8 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Future<List<Post>> getPosts() async {
     try {
-      return _postService.getPosts();
+      final posts = _postService.getPosts();
+      return posts;
     } on HttpDelegateGeneralException catch (e) {
       return [];
     } on HttpDelegateException catch (e) {

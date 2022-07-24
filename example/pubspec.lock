@@ -9,7 +9,7 @@ packages:
     source: hosted
     version: "31.0.0"
   analyzer:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: analyzer
       url: "https://pub.dartlang.org"
@@ -361,6 +361,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.2"
+  mockito:
+    dependency: "direct dev"
+    description:
+      name: mockito
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.2.0"
   mocktail:
     dependency: transitive
     description:
@@ -453,7 +460,7 @@ packages:
     source: hosted
     version: "1.0.2"
   simple_json:
-    dependency: "direct dev"
+    dependency: transitive
     description:
       name: simple_json
       url: "https://pub.dartlang.org"

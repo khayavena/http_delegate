@@ -1,4 +1,4 @@
-import '../domain/post.dart';
+import 'package:http_delegate/model/post.dart';
 
 abstract class UserRepository {
   Future<Post?> getPost();

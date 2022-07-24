@@ -7,14 +7,14 @@ import '../features/post/bloc/get_posts_bloc.dart';
 import '../features/post/repository/post_repository.dart';
 
 Future<void> provideMainApp() async {
-  WidgetsFlutterBinding.ensureInitialized();
   await initRemoteDataModules();
   runApp(
     MultiBlocProvider(
       providers: [
-        BlocProvider<GetUsersBloc>(
+        BlocProvider<GetPostsBloc>(
+          lazy: true,
           create: (BuildContext context) =>
-              GetUsersBloc(repository: moduleLocator<UserRepository>()),
+              GetPostsBloc(repository: moduleLocator<UserRepository>()),
         )
       ],
       child: const MainApp(),

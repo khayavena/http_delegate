@@ -10,20 +10,20 @@ import '../repository/post_repository.dart';
 /// operations on which state to update. Having single responsibility also makes
 /// your block clean and simple.
 
-class GetUsersBloc extends Bloc<GetUsersEvent, GetUsersState> {
+class GetPostsBloc extends Bloc<GetPostsEvent, GetPostsState> {
   final UserRepository repository;
 
-  GetUsersBloc({required this.repository}) : super(GetUsersState()) {
-    on<GetUsersEvent>((event, emit) async {
+  GetPostsBloc({required this.repository}) : super(GetPostsState()) {
+    on<GetPostsEvent>((event, emit) async {
       emit(await _getUsersToState(event));
     });
   }
 
-  Future<GetUsersState> _getUsersFailureToState() async {
+  Future<GetPostsState> _getUsersFailureToState() async {
     return state.buildWith(state: ResultStatus.failed, results: []);
   }
 
-  Future<GetUsersState> _getUsersToState(GetUsersEvent event) async {
+  Future<GetPostsState> _getUsersToState(GetPostsEvent event) async {
     final results = await repository.getPosts();
     if (results.isEmpty) {
       return _getUsersFailureToState();

@@ -22,9 +22,10 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   bloc_test: ^9.0.3
-  simple_json: ^2.2.0
   build_runner: ^2.2.0
+  mockito: ^5.2.0
   flutter_lints: ^2.0.1
+  analyzer: ^2.2.0
 
 flutter:
   uses-material-design: true

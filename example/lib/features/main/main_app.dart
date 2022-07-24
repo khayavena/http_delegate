@@ -8,11 +8,11 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Network Req Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const UsersPage(title: 'Flutter Demo Home Page'),
+      home: const PostsPage(title: 'Posts Page'),
     );
   }
 }

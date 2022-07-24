@@ -1,1 +1,1 @@
-class GetUsersEvent {}
+class GetPostsEvent {}

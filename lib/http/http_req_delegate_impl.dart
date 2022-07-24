@@ -13,8 +13,8 @@ class HttpReqDelegateImpl implements HttpReqDelegate {
   Future<T> get<T>(String endPoint, {Map<String, dynamic>? params}) async {
     try {
       final response = await dioClient.get(endPoint);
-      final result = JsonMapper.deserialize<T>(jsonDecode(response.data));
-      return Future.value(result);
+      final result = JsonMapper.deserialize<T>(response.data);
+      return result!;
     } on DioError catch (e) {
       throw HttpDelegateException(e);
     } on Error catch (e) {
@@ -29,7 +29,7 @@ class HttpReqDelegateImpl implements HttpReqDelegate {
     try {
       final response = await dioClient.post(endPoint, data: requestBody);
       final result = JsonMapper.deserialize<T>(jsonDecode(response.data));
-      return Future.value(result);
+      return result!;
     } on DioError catch (e) {
       throw HttpDelegateException(e);
     } on Error catch (e) {
@@ -46,7 +46,7 @@ class HttpReqDelegateImpl implements HttpReqDelegate {
     try {
       dynamic response = await dioClient.post(endPoint, data: formData);
       final result = JsonMapper.deserialize<T>(jsonDecode(response.data));
-      return Future.value(result);
+      return result!;
     } on DioError catch (e) {
       throw HttpDelegateException(e);
     } on Error catch (e) {

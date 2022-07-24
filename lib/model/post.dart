@@ -3,7 +3,7 @@ import 'package:simple_json_mapper/simple_json_mapper.dart';
 
 @JsonObject()
 class Post extends JsonModel {
-  final String userId;
+  final int userId;
   final int id;
   final String title;
   final String body;

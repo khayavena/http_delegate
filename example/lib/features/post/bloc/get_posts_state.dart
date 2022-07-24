@@ -1,14 +1,14 @@
+import 'package:http_delegate/model/post.dart';
 import 'package:http_example/features/post/bloc/result_status.dart';
 
-import '../domain/post.dart';
-
-class GetUsersState {
+class GetPostsState {
   ResultStatus status;
-  late List<Post>? posts = [];
+  List<Post> posts = [];
 
-  GetUsersState({this.status = ResultStatus.init, this.posts});
+  GetPostsState({this.status = ResultStatus.init, this.posts = const []});
 
-  GetUsersState buildWith(
-          {required ResultStatus state, required List<Post> results}) =>
-      GetUsersState(status: ResultStatus.init, posts: results);
+  GetPostsState buildWith(
+      {required ResultStatus state, required List<Post> results}) {
+    return GetPostsState(status: state, posts: results);
+  }
 }
